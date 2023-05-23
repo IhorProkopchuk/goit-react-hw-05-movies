@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Search.module.css';
+import styles from '../../components/Search/Search.module.css';
 
 const Search = ({ onSubmit }) => {
   const handleSubmit = evt => {
