@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { fetchMoviesByQuery } from '../../api/api';
 import Search from '../../components/Search/Search';
+import MovieList from '../../components/MovieList/MovieList';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
-  const location = useLocation();
+  // const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -36,13 +37,7 @@ const Movies = () => {
     <>
       <Search onSubmit={handleSubmit} />
       <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`} state={{ from: location }}>
-              {movie.title}
-            </Link>
-          </li>
-        ))}
+        <MovieList movies={movies} />
       </ul>
     </>
   );

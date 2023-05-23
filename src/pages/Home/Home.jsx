@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchTrendMovies } from '../../api/api';
-import MoviesList from '../../components/MoviesList/MoviesList';
+import MovieList from '../../components/MovieList/MovieList';
 import { Loader } from '../../components/Loader/Loader';
-
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -16,7 +15,7 @@ const Home = () => {
         setTrendingMovies(results);
       } catch (error) {
         setError('Failed to fetch trending movies. Please try again later.');
-      } finally { 
+      } finally {
         setLoading(false);
       }
     };
@@ -32,11 +31,11 @@ const Home = () => {
     return <p>{error}</p>;
   }
 
-
   return (
     <>
       <div>
-        <MoviesList trendingMovies={trendingMovies} />
+        <h2>Trending today</h2>
+        <MovieList movies={trendingMovies} />
       </div>
     </>
   );
