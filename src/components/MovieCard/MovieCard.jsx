@@ -5,10 +5,6 @@ import styles from './MovieCard.module.css';
 import imageNotFound from '../Cast/No_image.png';
 
 const MovieCard = ({ movie }) => {
-  if (!movie || !movie.title) {
-    return null;
-  }
-
   const { title, genres, release_date, overview, vote_average, poster_path } =
     movie;
   const releaseDate = release_date ? new Date(release_date).getFullYear() : '';
@@ -28,15 +24,15 @@ const MovieCard = ({ movie }) => {
         <h3>Overview</h3>
         <p>{overview}</p>
         <h3>Genres</h3>
-        {genres && genres.length > 0 ? (
+        {genres && genres.length > 0
+          ? (
           <ul>
             {genres.slice(0, 3).map((genre, index) => (
               <li key={index}>{genre.name}</li>
             ))}
           </ul>
-        ) : (
-          <p>Unknown</p>
-        )}
+            )
+          : (<p>Unknown</p>)}
       </div>
     </div>
   );
