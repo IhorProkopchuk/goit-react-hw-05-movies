@@ -44,10 +44,8 @@ const Reviews = () => {
               <p>{content}</p>
             </li>
           ))}
-        </ul>)
-        : (
-        <h2>We don't have any reviews for this movie</h2>
-      )}
+          </ul>)
+        : (<h2>We don't have any reviews for this movie</h2>)}
     </>
   );
 };
