@@ -25,13 +25,9 @@ const MovieCard = ({ movie }) => {
         <p>{overview}</p>
         <h3>Genres</h3>
         {genres && genres.length > 0
-          ? (
-          <ul>
-            {genres.slice(0, 3).map((genre, index) => (
+          ? (<ul>{genres.slice(0, 3).map((genre, index) => (
               <li key={index}>{genre.name}</li>
-            ))}
-          </ul>
-            )
+            ))}</ul>)
           : (<p>Unknown</p>)}
       </div>
     </div>
