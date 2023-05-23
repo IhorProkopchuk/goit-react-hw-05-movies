@@ -12,7 +12,9 @@ const Layout = () => {
           <li className={styles.navListItem}>
             <NavLink
               className={({ isActive }) =>
-                isActive ? styles.activeNavLink : styles.navLink
+                isActive
+                  ? styles.activeNavLink
+                  : styles.navLink
               }
               to="/"
             >
@@ -22,7 +24,9 @@ const Layout = () => {
           <li className={styles.navListItem}>
             <NavLink
               className={({ isActive }) =>
-                isActive ? styles.activeNavLink : styles.navLink
+                isActive
+                  ? styles.activeNavLink
+                  : styles.navLink
               }
               to="/movies"
             >
