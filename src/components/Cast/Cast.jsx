@@ -9,18 +9,20 @@ const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getCast = async () => {
       try {
         const { cast } = await fetchMovieCast(movieId);
         setCast(cast);
-        setLoading(false);
       } catch (error) {
-        console.log(error);
+        setError('Error fetching movie cast. Please try again later.');
+      } finally {
         setLoading(false);
       }
     };
+
     getCast();
   }, [movieId]);
 
@@ -28,27 +30,35 @@ const Cast = () => {
     event.target.src = imageNotFound;
   };
 
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   return (
     <>
       <h2>Cast</h2>
-      {loading ? (
-        <Loader />
-      ) : (
-        <ul>
-          {cast.map(({ name, character, profile_path }) => (
-            <li key={name}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
-                alt={profile_path ? 'actor' : 'No Image'}
-                width={200}
-                onError={handleImageError}
-              />
-              <h2>{name}</h2>
-              <p>Character: {character}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+            <ul>
+              {cast.map(({ name, character, profile_path }) => (
+                <li key={name}>
+                  <img
+                    src={
+                      profile_path
+                        ? `https://image.tmdb.org/t/p/w200${profile_path}`
+                        : imageNotFound
+                    }
+                    onError={handleImageError}
+                    width="200"
+                    alt={name}
+                  />
+                  <h2>{name}</h2>
+                  <p>Character: {character}</p>
+                </li>
+              ))}
+            </ul>
     </>
   );
 };
