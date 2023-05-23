@@ -1,44 +1,37 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-import { Loader } from '../Loader/Loader';
+import styles from './Search.module.css';
 
 const Search = ({ onSubmit }) => {
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async evt => {
+  const handleSubmit = evt => {
     evt.preventDefault();
     const query = evt.target.elements.query.value;
     if (!query) {
-      window.alert('Search query cannot be empty');
-      return;
+      window.alert('Please enter a movie to search');
     }
-
-    setLoading(true);
-
-    try {
-      await onSubmit(query);
-    } catch (error) {
-      console.log(error);
-    }
-
-    setLoading(false);
+    onSubmit(query);
     evt.target.reset();
   };
 
   return (
-    <>
-      <form
-        onSubmit={handleSubmit}
-        style={{ marginTop: '20px', marginLeft: '20px' }}
-      >
-        <input name="query" type="text" style={{ width: '200px' }} />
-        <button type="submit">Search</button>
+    <div className={styles.searchContainer}>
+      <form onSubmit={handleSubmit}>
+        <input
+          className={styles.searchInput}
+          name="query"
+          type="text"
+          placeholder="Search for a movie"
+        />
+        <button className={styles.searchButton} type="submit">
+          Search
+        </button>
       </form>
-      {loading && <Loader />}{' '}
-    </>
+    </div>
   );
 };
 
-Search.propTypes = { onSubmit: PropTypes.func.isRequired };
+Search.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default Search;
