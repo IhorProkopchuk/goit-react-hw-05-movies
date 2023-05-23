@@ -1,16 +1,25 @@
-.btn {
-  margin-top: 20px;
+.searchContainer {
+  margin-bottom: 20px;
   margin-left: 20px;
-  background-color: #bbb9b9;
-  color: #000;
+}
+
+.searchInput {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.searchButton {
   padding: 10px 20px;
+  font-size: 16px;
+  background-color: #bbb9b9;
+  color: #fff;
   border: none;
   border-radius: 4px;
-  font-size: 16px;
   cursor: pointer;
 }
 
-.btn:hover,
-.btn:focus {
+.searchButton:hover {
   background-color: #b31919;
 }
