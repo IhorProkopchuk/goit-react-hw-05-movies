@@ -1,0 +1,30 @@
+.navList {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.navLink {
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.activeNavLink {
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 500;
+  color: #b31919;
+}
+
+.navLink:hover,
+.navLink:focus {
+  color: #b31919;
+}
+
+header {
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 8px 8px #bbb9b9;
+}

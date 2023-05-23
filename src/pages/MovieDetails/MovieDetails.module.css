@@ -1,0 +1,35 @@
+.movieInfo {
+  display: flex;
+  gap: 20px;
+}
+
+.movieInfoLink {
+  text-decoration: none;
+  list-style: none;
+  padding: 8px, 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+}
+
+.movieInfoLink:hover,
+.movieInfoLink:focus {
+  color: #b31919;
+}
+
+.btn {
+  margin-top: 20px;
+  margin-left: 20px;
+  background-color: #bbb9b9;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #b31919;
+}
