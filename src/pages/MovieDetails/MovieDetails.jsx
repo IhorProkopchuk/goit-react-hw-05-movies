@@ -33,7 +33,7 @@ const MovieDetails = () => {
           &#10096; Go back
         </button>
       </Link>
-      <MovieCard movie={selectedMovie || {}} />
+      <MovieCard movie={selectedMovie} />
       <h3>Additional information</h3>
       <ul>
         <li>
