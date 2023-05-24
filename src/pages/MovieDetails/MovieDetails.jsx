@@ -13,18 +13,33 @@ const MovieDetails = () => {
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
   const { movieId } = useParams();
   const [selectedMovie, setSelectedMovie] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
 
   useEffect(() => {
     const fetchSelectedMovie = async movieId => {
+      setLoading(true);
+      setError(null);
       try {
         const movieData = await fetchMoviesById(movieId);
         setSelectedMovie(movieData);
       } catch (error) {
-        console.log(error);
+        setError('Failed to fetch movies. Please try again later.');
+      } finally {
+        setLoading(false);
       }
     };
     fetchSelectedMovie(movieId);
   }, [movieId]);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <>
