@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { fetchMoviesByQuery } from '../../api/api';
 import Search from '../../components/Search/Search';
 import MovieList from '../../components/MovieList/MovieList';
@@ -10,6 +10,8 @@ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const location = useLocation();
+
 
   useEffect(() => {
     const query = searchParams.get('query') ?? '';
@@ -52,7 +54,9 @@ const Movies = () => {
     <>
       <Search onSubmit={handleSubmit} />
       <ul>
-        <MovieList movies={movies} />
+        {movies.length > 0 && (
+          <MovieList movies={movies} state={{ from: location }} />
+        )}
       </ul>
     </>
   );
