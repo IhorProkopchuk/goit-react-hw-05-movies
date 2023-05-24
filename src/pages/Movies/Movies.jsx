@@ -3,16 +3,22 @@ import { useSearchParams } from 'react-router-dom';
 import { fetchMoviesByQuery } from '../../api/api';
 import Search from '../../components/Search/Search';
 import MovieList from '../../components/MovieList/MovieList';
+import { Loader } from '../../components/Loader/Loader';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const query = searchParams.get('query') ?? '';
     if (!query) return;
 
     const getMovie = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
         const { results } = await fetchMoviesByQuery(query);
         if (results.length === 0) {
@@ -21,12 +27,22 @@ const Movies = () => {
           setMovies(results);
         }
       } catch (error) {
-        console.error(error);
-        setMovies([]);
+        setError('An error occurred while fetching movies.');
+      } finally {
+        setLoading(false);
       }
     };
+
     getMovie();
   }, [searchParams]);
+
+    if (loading) {
+      return <Loader />;
+    }
+
+    if (error) {
+      return <p>{error}</p>;
+    }
 
   const handleSubmit = query => {
     setSearchParams({ query });
