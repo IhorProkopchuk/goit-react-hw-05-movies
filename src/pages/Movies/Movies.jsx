@@ -6,7 +6,6 @@ import MovieList from '../../components/MovieList/MovieList';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
-  // const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
